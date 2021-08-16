@@ -13,8 +13,18 @@ const add = (newContact) => {
   return Contact.create(newContact);
 };
 
+const updateById = (id, data) => {
+  return Contact.findByIdAndUpdate(id, data, { new: true });
+};
+
+const deleteById = (id) => {
+  return Contact.findByIdAndDelete(id);
+};
+
 module.exports = {
   add,
   getAll,
   getById,
+  updateById,
+  deleteById,
 };
