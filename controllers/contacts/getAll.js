@@ -1,20 +1,18 @@
-const contacts = require("../../data/contacts");
+const { contacts: service } = require("../../services");
 
-const getAll = (req, res) => {
-  if (!contacts) {
-    return res.status(500).json({
-      status: "fail",
-      code: 500,
-      message: "Server error",
+const getAll = async (req, res, next) => {
+  try {
+    const result = await service.getAll();
+    res.json({
+      status: "success",
+      code: 200,
+      data: {
+        result,
+      },
     });
+  } catch (error) {
+    next(error);
   }
-  res.json({
-    status: "success",
-    code: 200,
-    data: {
-      result: contacts,
-    },
-  });
 };
 
 module.exports = getAll;
