@@ -1,19 +1,19 @@
-const contacts = require("../../data/contacts");
+const { NotFound } = require("http-errors");
 
-const getById = (req, res) => {
+const { contacts: service } = require("../../services");
+
+const getById = async (req, res, next) => {
   const { id } = req.params;
-  const result = contacts.find((item) => item._id === id);
+  const result = await service.getById(id);
   if (!result) {
-    res.status(404).json({
-      status: "error",
-      code: 404,
-      message: "Not found",
-    });
+    throw new NotFound(`Contact with id=${id} not found`);
   }
   res.json({
     status: "success",
     code: 200,
-    data: { result },
+    data: {
+      result,
+    },
   });
 };
 

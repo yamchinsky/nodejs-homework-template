@@ -1,17 +1,17 @@
-const { v4 } = require("uuid");
+const { contacts: service } = require("../../services");
 
-const contacts = require("../../data/contacts");
-
-const add = (req, res) => {
-  const newContact = { ...req.body, _id: v4() };
-  contacts.push(newContact);
-
-  res.status(201).json({
-    status: "success",
-    code: 201,
-    data: {
-      result: newContact,
-    },
-  });
+const add = async (req, res, next) => {
+  try {
+    const result = await service.add(req.body);
+    res.status(201).json({
+      status: "success",
+      code: 201,
+      data: {
+        result,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
 };
 module.exports = add;
