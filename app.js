@@ -10,10 +10,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/v1/contacts", api.contacts);
+app.use("/api/v1/auth", api.auth);
+app.use("/api/v1/orders", api.orders);
 
 app.use((_, res) => {
-  res.status(404).json({
+  res.status(404).send({
     status: "error",
     code: 404,
     message: "Not found",
@@ -33,10 +34,12 @@ const { DB_HOST, PORT = 3000 } = process.env;
 
 mongoose
   .connect(DB_HOST, {
+    useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
     useFindAndModify: false,
   })
-  .then(() => app.listen(PORT))
+  .then(() => {
+    app.listen(PORT);
+  })
   .catch((error) => console.log(error));
