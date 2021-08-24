@@ -28,6 +28,10 @@ const contactSchema = Schema({
     //   message: (props) => `${props.value} is not a valid phone`,
     // },
   },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: "user",
+  },
 });
 
 const joiSchema = Joi.object({
