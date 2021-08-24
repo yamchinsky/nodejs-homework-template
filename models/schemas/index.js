@@ -1,7 +1,7 @@
 const user = require("./User");
-const order = require("./Order");
+const { contactSchema } = require("./contact");
 
 module.exports = {
   user,
-  order,
+  contactSchema,
 };

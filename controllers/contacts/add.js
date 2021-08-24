@@ -1,9 +1,8 @@
-const { orders: service } = require("../../services");
+const { contacts: service } = require("../../services");
 
 const add = async (req, res, next) => {
   try {
-    const newOrder = { ...req.body, owner: req.user._id };
-    const result = await service.add(newOrder);
+    const result = await service.add(req.body);
     res.status(201).json({
       status: "success",
       code: 201,
@@ -15,5 +14,4 @@ const add = async (req, res, next) => {
     next(error);
   }
 };
-
 module.exports = add;
