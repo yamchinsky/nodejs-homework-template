@@ -1,4 +1,4 @@
-const user = require("./User");
+const user = require("./user");
 const { contactSchema } = require("./contact");
 
 module.exports = {

@@ -8,14 +8,14 @@ const signup = async (req, res, next) => {
       return res.status(409).json({
         status: "error",
         code: 409,
-        message: "Alredy registered",
+        message: "Already registered",
       });
     }
     await service.add(req.body);
     res.status(201).json({
       status: "success",
       code: 201,
-      message: "Success register",
+      message: "Successfully registered",
     });
   } catch (error) {}
 };
