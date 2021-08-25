@@ -10,11 +10,11 @@ const { validation, authenticate } = require("../middleware");
 
 const router = express.Router();
 
-router.get("/", ctrl.getAll);
+router.get("/", authenticate, ctrl.getAll);
 
 router.get("/:id", ctrlWrapper(ctrl.getById));
 
-router.post("/", authenticate, validation(joiSchema), ctrl.add);
+router.post("/", validation(joiSchema), ctrl.add);
 
 router.put("/:id", ctrlWrapper, ctrl.update);
 
