@@ -7,6 +7,7 @@ const getOne = (filter) => {
 const getById = (id) => User.findById(id);
 
 const add = ({ password, ...rest }) => {
+  console.log(rest);
   const newUser = new User(rest);
   newUser.setPassword(password);
   return newUser.save();
