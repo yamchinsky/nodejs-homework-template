@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const { Schema } = require("mongoose");
 const Joi = require("joi");
+const gravatar = require("gravatar");
 
 // const passport = "ЕН234565";
 // /^[А-Я]{2}[0-9]{6}$/
@@ -28,6 +29,12 @@ const userSchema = Schema({
   token: {
     type: String,
     default: null,
+  },
+  avatarURL: {
+    type: String,
+    default: function () {
+      return gravatar.url(this.email, { s: "250" }, true);
+    },
   },
 });
 

@@ -18,6 +18,6 @@ router.post("/", authenticate, validation(joiSchema), ctrl.add);
 
 router.put("/:id", ctrlWrapper, ctrl.update);
 
-// router.delete("/:id", ctrl.del);
+// router.delete("/:id", authenticate, ctrlWrapper (ctrl.del));
 
 module.exports = router;
