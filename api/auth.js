@@ -10,6 +10,8 @@ const router = express.Router();
 
 router.post("/signup", validation(joiSchema), ctrl.signup);
 
+router.get("./verify/:verifyToken", ctrl.verifyEmail); //запрос на считывание токена, при переходе юзера по ссылке в пиьсме
+
 router.post("/signin", ctrl.signin);
 
 router.get("/logout", authenticate, ctrl.logout);

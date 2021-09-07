@@ -1,4 +1,5 @@
 const signup = require("./signup");
+const verifyEmail = require("./verifyEmail");
 const signin = require("./signin");
 const logout = require("./logout");
 const uploadAvatar = require("./uploadAvatar");
@@ -8,4 +9,5 @@ module.exports = {
   signin,
   logout,
   uploadAvatar,
+  verifyEmail,
 };

@@ -5,7 +5,7 @@ const signin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const user = await service.getOne({ email });
-    if (!user || !user.comparePassword(password)) {
+    if (!user || !user.verify || !user.comparePassword(password)) {
       return res.status(400).json({
         status: "error",
         code: 400,
@@ -16,7 +16,7 @@ const signin = async (req, res, next) => {
     //     return res.status(404).json({
     //         status: "error",
     //         code: 404,
-    //         message: "Not found"
+    //         : "Not found"
     //     });
     // }
     // if(!user.comparePassword(password)){
